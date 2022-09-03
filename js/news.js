@@ -10,21 +10,23 @@ const displayNewsCategories = async () => {
     const menu = document.getElementById('all-menu');
     data.forEach(news => {
         const a = document.createElement('a');
-        a.innerHTML = `<a onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</a>`;
+        a.innerHTML = `<a  class="p-2 cursor-pointer" onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</a>`;
         menu.appendChild(a)
     });
 }
+
 // Load News Data
 const loadNewsDetails = (id) => {
+    document.getElementById("spinner").style.display = "block";
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
         .then(data => displayCategoryDetails(data.data))
         .catch(error => displayCategoryDetails(error))
 }
-
+data.sort((a, b) => b.total_view - a.total_view);
 const displayCategoryDetails = details => {
     console.log(details)
-    // document.getElementById("spinner").style.display = "none";
+    document.getElementById("spinner").style.display = "none";
     if (details.length > 0) {
         const totallength = details.length;
         const inputfildText = document.getElementById('search-field');
