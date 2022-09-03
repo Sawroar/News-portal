@@ -1,10 +1,11 @@
+//  laodNews
 const loadNews = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
     const res = await fetch(url)
     const data = await res.json();
     return data.data.news_category
 }
-
+// // ------------- show all the categories in UI  -------------------
 const displayNewsCategories = async () => {
     const data = await loadNews()
     const menu = document.getElementById('all-menu');
@@ -20,12 +21,13 @@ const displayNewsCategories = async () => {
 // Load News Data
 const loadNewsDetails = (id) => {
     document.getElementById("spinner").style.display = "block";
+    // fetch (https://openapi.programming-hero.com/api/news/category/01 this ) catagory  item
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
         .then(data => displayCategoryDetails(data.data))
         .catch(error => displayCategoryDetails(error))
 }
-
+//  items  on particular news 
 const displayCategoryDetails = details => {
 
     document.getElementById("spinner").style.display = "none";
@@ -41,6 +43,9 @@ const displayCategoryDetails = details => {
         inputfildText.value = 'No News Found ';
     }
     details.sort((a, b) => b.total_view - a.total_view);
+
+    // 
+    // show news in UI 
     const newsBodyContainer = document.getElementById('news-body');
     newsBodyContainer.innerHTML = '';
     details.forEach(detail => {
@@ -98,12 +103,12 @@ const viewClickDetails = (id) => {
 
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
         .then(res => res.json())
-        .then(data => viewClickDetailsDisplay(data))
-        .catch(error => viewClickDetailsDisplay(error))
+        .then(data => viewDetailsDisplay(data))
+        .catch(error => viewDetailsDisplay(error))
 
 }
 
-const viewClickDetailsDisplay = details => {
+const viewDetailsDisplay = details => {
 
     const modal = document.getElementById('exampleModalLabel');
     modal.innerHTML = ''
@@ -143,7 +148,7 @@ const viewClickDetailsDisplay = details => {
 }
 
 
-viewClickDetailsDisplay()
+viewDetailsDisplay()
 viewClickDetails();
 
 
