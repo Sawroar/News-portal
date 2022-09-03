@@ -151,7 +151,20 @@ const viewDetailsDisplay = details => {
 viewDetailsDisplay()
 viewClickDetails();
 
+const loadBlogs = () => {
+    const blog = document.getElementById('blog');
+    const div = document.createElement('div');
+    div.innerHTML = `<h5 class="mt-4">What is the difference between var ,let ,const?</h5>
+                      <p>var variables can be updated and re-declared within its scope; let variables can be updated but not re-declared; const variables can neither be updated nor re-declared.</p>
+                      <h5>difference between arrow function and normal function?</h5>
+                      <p>Unlike regular functions, arrow functions do not have their own this . The value of this inside an arrow function remains the same throughout the lifecycle of the function and is always bound to the value of this in the closest non-arrow parent function..</p>
+                      <h5>Why we use template string?
+                      </h5>
+                      <p>
+                      Template literals (template strings) allow you to use strings or embedded expressions in the form of a string. They are enclosed in backticks </p>`
+    blog.appendChild(div)
 
+}
 
 
 
