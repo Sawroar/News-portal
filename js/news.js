@@ -37,17 +37,12 @@ const displayCategoryDetails = details => {
         const totallength = details.length;
         const inputfildText = document.getElementById('search-field');
         inputfildText.value = 'No News Found ';
-
-
-
     }
-
+    details.sort((a, b) => b.total_view - a.total_view);
     const newsBodyContainer = document.getElementById('news-body');
     newsBodyContainer.innerHTML = '';
     details.forEach(detail => {
-        detail.sort((a, b) => {
-            return b.data[0].total_view - a.data[0].total_view;
-        })
+
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML = `
             <div class="card mb-3 p-4" >
@@ -108,7 +103,6 @@ const viewClickDetails = (id) => {
 
 const viewClickDetailsDisplay = details => {
 
-    console.log(details)
     const modal = document.getElementById('exampleModalLabel');
     modal.innerHTML = ''
 
