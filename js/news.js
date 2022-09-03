@@ -10,7 +10,7 @@ const displayNewsCategories = async () => {
     const menu = document.getElementById('all-menu');
     data.forEach(news => {
         const a = document.createElement('a');
-        a.innerHTML = `<a  class="p-2 cursor-pointer" onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</a>`;
+        a.innerHTML = `<a   data-bs-toggle="bg-dark"  onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</a>`;
         menu.appendChild(a)
     });
 }
@@ -23,10 +23,11 @@ const loadNewsDetails = (id) => {
         .then(data => displayCategoryDetails(data.data))
         .catch(error => displayCategoryDetails(error))
 }
-data.sort((a, b) => b.total_view - a.total_view);
+
 const displayCategoryDetails = details => {
-    console.log(details)
+
     document.getElementById("spinner").style.display = "none";
+
     if (details.length > 0) {
         const totallength = details.length;
         const inputfildText = document.getElementById('search-field');
@@ -38,12 +39,15 @@ const displayCategoryDetails = details => {
         inputfildText.value = 'No News Found ';
 
 
+
     }
 
     const newsBodyContainer = document.getElementById('news-body');
     newsBodyContainer.innerHTML = '';
     details.forEach(detail => {
-        console.log(detail._id);
+        detail.sort((a, b) => {
+            return b.data[0].total_view - a.data[0].total_view;
+        })
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML = `
             <div class="card mb-3 p-4" >
@@ -94,6 +98,7 @@ loadNewsDetails();
 
 
 const viewClickDetails = (id) => {
+
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
         .then(res => res.json())
         .then(data => viewClickDetailsDisplay(data))
@@ -134,11 +139,13 @@ const viewClickDetailsDisplay = details => {
      `;
         modal.appendChild(creatediv);
 
+
     } catch (err) {
 
     }
 
 }
+
 
 viewClickDetailsDisplay()
 viewClickDetails();
