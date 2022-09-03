@@ -10,7 +10,9 @@ const displayNewsCategories = async () => {
     const menu = document.getElementById('all-menu');
     data.forEach(news => {
         const a = document.createElement('a');
-        a.innerHTML = `<a   data-bs-toggle="bg-dark"  onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</a>`;
+        a.innerHTML = `
+        <button class="btn btn-white btn-outline-primary" onclick="loadNewsDetails('${news.category_id}')" > ${news.category_name}</button>
+        `;
         menu.appendChild(a)
     });
 }
@@ -67,7 +69,7 @@ const displayCategoryDetails = details => {
 
                 <div class="col-md-3 d-flex ">
                                       <h5 class=' me-1 class= "py-2"' ><i class="fa-regular fa-eye"></i></h5>
-                                     <h5 >${detail.total_view ? detail.total_view : 'NO views'}   M</h5>
+                                     <h5 >${detail.total_view ? detail.total_view : '0 Views'}   M</h5>
                              </div>
 
             
@@ -125,7 +127,7 @@ const viewClickDetailsDisplay = details => {
                                          </div>
                                          <div class= "col ">
                                            <h5 class='mx-2 class= "py-2"' ><i class="fa-regular fa-eye"></i></h5>
-                                           <h5 > ${details.data[0].total_view ? details.data[0].total_view : 'not view'} M</h5>
+                                           <h5 > ${details.data[0].total_view ? details.data[0].total_view : '0 view'} M</h5>
                                          </div>
                                     </div>
                                  </div>
