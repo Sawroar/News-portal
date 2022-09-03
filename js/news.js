@@ -147,7 +147,7 @@ const viewDetailsDisplay = details => {
 
 }
 
-
+// Function Calling from outside 
 viewDetailsDisplay()
 viewClickDetails();
 
