@@ -147,10 +147,6 @@ const viewDetailsDisplay = details => {
 
 }
 
-// Function Calling from outside 
-viewDetailsDisplay()
-viewClickDetails();
-
 const loadBlogs = () => {
     const blog = document.getElementById('blog');
     const div = document.createElement('div');
@@ -166,6 +162,11 @@ const loadBlogs = () => {
     // completed template string
 
 }
+
+// Function Calling from outside 
+viewDetailsDisplay()
+viewClickDetails();
+
 
 
 
