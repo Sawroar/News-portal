@@ -162,7 +162,8 @@ const loadBlogs = () => {
                       </h5>
                       <p>
                       Template literals (template strings) allow you to use strings or embedded expressions in the form of a string. They are enclosed in backticks </p>`
-    blog.appendChild(div)
+    blog.appendChild(div);
+    // completed template string
 
 }
 
